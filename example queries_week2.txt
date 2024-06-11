@@ -1,0 +1,100 @@
+-- What are we using?
+
+SELECT 
+    col_one,
+    col_two,
+    col_three,
+    col_four,
+    col_five
+FROM 
+    table_one
+
+
+-- Z shouldn't be there... Let's do an IF statement (CASE statement)
+
+
+SELECT
+    *,
+    -- col_one,
+    -- col_two,
+    -- col_three,
+    -- col_four,
+    -- col_five,
+    CASE WHEN col_one = 'Z' THEN 'A' ELSE col_one END AS col_six
+FROM 
+    table_one
+
+
+-- Removing the NULL
+
+SELECT 
+    col_one,
+    col_two,
+    col_three,
+    col_four,
+    -- COALESCE(col_four, 99) AS col_four,
+    col_five 
+FROM
+    table_one
+WHERE
+     col_four IS NULL
+
+
+-- Use LOWER
+
+SELECT
+    LOWER(col_one),
+    col_two,
+    col_three,
+    col_four,
+    col_five
+FROM 
+    table_one
+
+
+-- Use UPPER
+SELECT
+    col_one,
+    UPPER(col_two),
+    col_three,
+    col_four,
+    col_five
+FROM 
+    table_one
+
+
+-- Removing Duplicates
+
+-- Review everything in column one
+
+SELECT 
+    col_one
+FROM table_one
+
+-- Remove all duplicates in column one with agg
+
+SELECT
+    col_one
+FROM
+    table_one
+GROUP BY
+    col_one
+
+-- Remove all duplicates in column one with distinct
+
+SELECT 
+    DISTINCT col_one
+FROM table_one
+
+
+-- Removing duplicates based on a specific column and keeping only one occurrence
+
+WITH CTE AS (
+    SELECT 
+        col_one,
+        ROW_NUMBER() OVER (PARTITION BY col_one ORDER BY col_one) AS rn
+    FROM table_one
+)
+SELECT *
+FROM CTE
+WHERE rn = 1

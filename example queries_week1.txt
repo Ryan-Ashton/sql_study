@@ -1,0 +1,212 @@
+SELECT 
+    col_one,
+    col_two,
+    col_three,
+    col_four,
+    col_five
+FROM 
+    table_one
+
+-----------------------------------------------
+
+
+SELECT 
+    col_one AS whatever,
+    col_two,
+    col_three,
+    col_four,
+    col_five
+FROM 
+    table_one
+
+-----------------------------------------------
+
+
+SELECT 
+    *
+FROM
+    table_one
+
+-----------------------------------------------
+
+SELECT
+    *
+FROM
+    table_one
+WHERE
+    col_one = 'A'
+
+
+-----------------------------------------------
+
+SELECT
+    *
+FROM
+    table_one
+WHERE
+    col_one = 'A'
+AND
+    col_two = 'bbbbb'
+
+
+-----------------------------------------------
+
+SELECT
+    *
+FROM
+    table_one
+WHERE
+    col_one = 'A'
+OR
+    col_two = 'bbbbb'
+
+
+-----------------------------------------------
+
+SELECT *
+FROM 
+    table_one
+WHERE 
+    col_two LIKE '%bb%'
+
+
+-----------------------------------------------
+
+SELECT
+    *
+FROM
+    table_one
+WHERE
+    col_five BETWEEN '2023-08-01' AND '2023-08-04'
+
+
+
+-----------------------------------------------
+
+SELECT
+    *
+FROM
+    table_one
+WHERE
+    col_five < '2023-08-08'
+
+-----------------------------------------------
+
+-- Wait a second? That sums up too much for A??
+
+SELECT
+    col_one,
+    SUM(col_three)
+FROM
+    table_one
+
+-----------------------------------------------
+
+SELECT
+    col_one,
+    SUM(col_three)
+FROM
+    table_one
+WHERE
+    col_one = 'A'
+
+------------------------------------------------
+
+SELECT
+    col_one,
+    SUM(col_three)
+FROM
+    table_one
+GROUP BY
+    col_one
+
+------------------------------------------------
+
+SELECT
+    col_one,
+    SUM(col_three)
+FROM
+    table_one
+GROUP BY
+    col_one
+ORDER BY
+    col_one DESC
+
+------------------------------------------------
+
+SELECT
+    col_one,
+    SUM(col_four) AS data
+FROM
+    table_one
+GROUP BY
+    col_one
+HAVING
+    data < 153
+
+------------------------------------------------
+
+SELECT
+    *
+FROM
+    table_two
+
+------------------------------------------------
+
+-- Join Everything
+
+SELECT
+    *
+FROM
+    table_one
+LEFT JOIN
+    table_two
+ON
+    table_one.col_one = table_two.capital
+
+
+------------------------------------------------
+
+-- 1 to 1
+
+SELECT
+    *
+FROM
+    table_one
+LEFT JOIN
+    table_two
+ON
+    table_one.col_one = table_two.capital
+WHERE
+    col_one = 'E'
+
+-------------------------------------------------
+
+-- 1 to many
+
+SELECT
+    *
+FROM
+    table_one
+LEFT JOIN
+    table_two
+ON
+    table_one.col_one = table_two.capital
+WHERE
+    col_one = 'B'
+
+------------------------------------------------
+
+-- many to many
+
+
+SELECT
+    *
+FROM
+    table_one
+LEFT JOIN
+    table_two
+ON
+    table_one.col_one = table_two.capital
+WHERE
+    col_one = 'A'
